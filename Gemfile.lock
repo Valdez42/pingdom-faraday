@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    pingdom-faraday (0.0.1)
+    pingdom-faraday (0.0.2)
       activesupport (~> 4.2)
       faraday
       faraday_middleware

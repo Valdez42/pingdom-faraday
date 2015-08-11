@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "pingdom-faraday"
-  s.version = "0.0.1"
+  s.version = "0.0.2"
 
   s.authors = ["Andy Brennan", "Jason Straughan"]
   s.homepage = "https://github.com/Valdez42/pingdom-faraday"
