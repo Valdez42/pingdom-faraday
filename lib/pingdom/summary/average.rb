@@ -1,6 +1,5 @@
 module Pingdom
   class Summary
-
     # summary.average includeuptime probes=34,35 byprobe
     # { "responsetime"=>{
     #     "from"=>0, "to"=>1298110456, "probes"=>"34, 35", "avgresponse"=>[
@@ -12,7 +11,7 @@ module Pingdom
         body  = super["summary"]
         sum   = body["responsetime"]
         attrs = sum.slice("from", "to")
-        attrs["probes"] = (attrs["probes"] || "").gsub(/\w+/, '').split(',').map{|e| e.to_i }
+        attrs["probes"] = (attrs["probes"] || "").gsub(/\w+/, "").split(",").map(&:to_i)
 
         sum["status"] = Status.new(client, response, body["status"]) if body.key?("status")
 
@@ -32,14 +31,12 @@ module Pingdom
         sum = Summary.new(client, response, sum)
       end
 
-      attributes  :probeid      => :probe_id,
-                  :responsetime => :response_time
+      attributes probeid: :probe_id,
+                 responsetime: :response_time
 
       def probe
-        @client.probes.detect{ |probe| probe.id == probe_id }
+        @client.probes.detect { |probe| probe.id == probe_id }
       end
-
     end
-
   end
 end

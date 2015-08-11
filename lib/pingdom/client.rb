@@ -1,21 +1,17 @@
-require File.join(File.dirname(__FILE__), '..', 'pingdom-ruby') unless defined? Pingdom
+require File.join(File.dirname(__FILE__), "..", "pingdom-ruby") unless defined? Pingdom
 
 module Pingdom
   class Client
-
     attr_accessor :limit
 
     def initialize(options = {})
-      @options = options.with_indifferent_access.reverse_merge(:http_driver => Faraday.default_adapter)
+      @options = options.with_indifferent_access.reverse_merge(http_driver: Faraday.default_adapter)
 
       raise ArgumentError, "an application key must be provided (as :key)" unless @options.key?(:key)
 
-      @connection = Faraday::Connection.new(:url => "https://api/pingdom.com/api/2.0/", ssl: {verify: false}) do |builder|
+      @connection = Faraday::Connection.new(url: "https://api/pingdom.com/api/2.0/", ssl: { verify: false }) do |builder|
         builder.url_prefix = "https://api.pingdom.com/api/2.0"
 
-        # builder.adapter :logger, @options[:logger]
-        builder.use Faraday::Response::Logger, Rails.logger
-        
         builder.adapter @options[:http_driver]
 
         # builder.use Gzip # TODO: write GZip response handler, add Accept-Encoding: gzip header
@@ -31,7 +27,7 @@ module Pingdom
     # probes => [1,2,3] #=> probes => "1,2,3"
     def prepare_params(options)
       options.each do |(key, value)|
-        options[key] = Array.wrap(value).map(&:to_s).join(',')
+        options[key] = Array.wrap(value).map(&:to_s).join(",")
         options[key] = value.to_i if value.acts_like?(:time)
       end
 
@@ -40,7 +36,7 @@ module Pingdom
 
     def get(uri, params = {}, &block)
       response = @connection.get(@connection.build_url(uri, prepare_params(params)), &block)
-      update_limits!(response.headers['req-limit-short'], response.headers['req-limit-long'])
+      update_limits!(response.headers["req-limit-short"], response.headers["req-limit-long"])
       response
     end
 
@@ -54,8 +50,8 @@ module Pingdom
     # "Remaining: 394 Time until reset: 3589"
     def parse_limit(limit)
       if limit.to_s =~ /Remaining: (\d+) Time until reset: (\d+)/
-        { :remaining => $1.to_i,
-          :resets_at => $2.to_i.seconds.from_now }
+        { remaining: $1.to_i,
+          resets_at: $2.to_i.seconds.from_now }
       end
     end
 
@@ -73,7 +69,7 @@ module Pingdom
 
     # Check ID
     def results(id, options = {})
-      options.reverse_merge!(:includeanalysis => true)
+      options.reverse_merge!(includeanalysis: true)
       Result.parse(self, get("results/#{id}", options))
     end
 
@@ -88,6 +84,5 @@ module Pingdom
     def summary(id)
       Summary.proxy(self, id)
     end
-
   end
 end

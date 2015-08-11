@@ -1,5 +1,4 @@
 module Pingdom
-
   # {"name"=>"Autocomplete", "id"=>259103, "type"=>"http", "lastresponsetime"=>203173, "status"=>"up", "lasttesttime"=>1298102416}
   class Check < Base
     def self.parse(client, response)
@@ -9,9 +8,9 @@ module Pingdom
       end
     end
 
-    attributes  :lastresponsetime => :last_response_time,
-                :lasttesttime     => :last_test_time,
-                :lasterrortime    => :last_error_time
+    attributes lastresponsetime: :last_response_time,
+               lasttesttime: :last_test_time,
+               lasterrortime: :last_error_time
 
     def results(options = {})
       @client.results(id, options)
@@ -28,7 +27,5 @@ module Pingdom
     def lasterrortime
       Time.at(super)
     end
-
   end
-
 end

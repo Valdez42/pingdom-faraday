@@ -1,5 +1,4 @@
 module Pingdom
-
   # {"statusdesclong"=>"OK", "probeid"=>28, "responsetime"=>221, "statusdesc"=>"OK", "status"=>"up", "probedesc"=>"Amsterdam 2, Netherlands"}
   class Result < Base
     def self.parse(client, response)
@@ -9,12 +8,11 @@ module Pingdom
       end
     end
 
-    attributes  :responsetime => :response_time,
-                :probeid      => :probe_id
+    attributes responsetime: :response_time,
+               probeid: :probe_id
 
     def probe
-      @client.probes.detect{ |probe| probe.id == probe_id }
+      @client.probes.detect { |probe| probe.id == probe_id }
     end
   end
-
 end

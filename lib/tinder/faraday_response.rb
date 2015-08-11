@@ -28,7 +28,7 @@ module Tinder
   module FaradayResponse
     class WithIndifferentAccess < ::Faraday::Response::Middleware
       begin
-        require 'active_support/core_ext/hash/indifferent_access'
+        require "active_support/core_ext/hash/indifferent_access"
       rescue LoadError, NameError => error
         self.load_error = error
       end
@@ -38,8 +38,8 @@ module Tinder
           json = response[:body]
           if json.is_a?(Hash)
             response[:body] = ::HashWithIndifferentAccess.new(json)
-          elsif json.is_a?(Array) and json.first.is_a?(Hash)
-            response[:body] = json.map{|item| ::HashWithIndifferentAccess.new(item) }
+          elsif json.is_a?(Array) && json.first.is_a?(Hash)
+            response[:body] = json.map { |item| ::HashWithIndifferentAccess.new(item) }
           end
         end
       end

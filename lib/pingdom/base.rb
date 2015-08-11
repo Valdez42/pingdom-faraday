@@ -1,6 +1,5 @@
 module Pingdom
   class Base
-
     def initialize(client, response, attributes = {})
       @client     = client
       @response   = response
@@ -34,21 +33,20 @@ module Pingdom
     end
 
     def inspect
-      "#<%s %s>" % [self.class.to_s, @attributes.inject([]){ |a, (k,v)| a << "%s: %s" % [k,v.inspect]; a }.join(' ')]
+      "#<%s %s>" % [self.class.to_s, @attributes.reduce([]) { |a, (k, v)| a << "%s: %s" % [k, v.inspect]; a }.join(" ")]
     end
 
     def self.check_error!(response)
       if response.body.key?("error")
-        raise Error, "%s (%s %s)" % [ response.body["error"]["errormessage"],
-                                      response.body["error"]["statuscode"],
-                                      response.body["error"]["statusdesc"] ]
+        raise Error, "%s (%s %s)" % [response.body["error"]["errormessage"],
+                                     response.body["error"]["statuscode"],
+                                     response.body["error"]["statusdesc"]]
       end
     end
 
-    def self.parse(client, response)
+    def self.parse(_client, response)
       check_error!(response)
       response.body
     end
-
   end
 end

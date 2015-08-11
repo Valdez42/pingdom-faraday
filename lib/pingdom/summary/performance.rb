@@ -1,6 +1,5 @@
 module Pingdom
   class Summary
-
     # summary.performance includeuptime resolution=day
     # {"days"=>[{"unmonitored"=>0, "downtime"=>0, "starttime"=>1297238400, "uptime"=>86400, "avgresponse"=>234},
     #           {"unmonitored"=>0, "downtime"=>0, "starttime"=>1297324800, "uptime"=>86400, "avgresponse"=>215},
@@ -17,12 +16,12 @@ module Pingdom
       INTERVALS = {
         "hour"  => 1.hour,
         "day"   => 1.day,
-        "week"  => 1.week
+        "week"  => 1.week,
       }
 
       def self.parse(client, response)
         body      = super["summary"]
-        interval  = body.keys.detect{ |k| INTERVALS.keys.include?(k.chomp('s').to_s) }.chomp('s').to_sym
+        interval  = body.keys.detect { |k| INTERVALS.keys.include?(k.chomp("s").to_s) }.chomp("s").to_sym
         intervals = body[interval.to_s.pluralize]
 
         intervals.map do |perf|
@@ -61,9 +60,7 @@ module Pingdom
         monitored + unmonitored
       end
 
-      attributes :avgresponse => :response_time
-
+      attributes avgresponse: :response_time
     end
-
   end
 end
