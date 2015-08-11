@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     pingdom-faraday (0.0.1)
-      activesupport (~> 4.2.3)
+      activesupport (~> 4.2)
       faraday
       faraday_middleware
 
@@ -60,7 +60,7 @@ PLATFORMS
 
 DEPENDENCIES
   pingdom-faraday!
-  rspec (~> 3.3.0)
+  rspec (~> 3.3)
   rubocop
 
 BUNDLED WITH

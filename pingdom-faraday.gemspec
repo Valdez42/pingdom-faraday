@@ -3,6 +3,7 @@ Gem::Specification.new do |s|
   s.version = "0.0.1"
 
   s.authors = ["Andy Brennan", "Jason Straughan"]
+  s.homepage = "https://github.com/Valdez42/pingdom-faraday"
   s.date = "2015-08-11"
   s.description = "Pingdom Ruby Client"
   s.email = ["andyvaldez75@gmail.com", "jasons@grok-interactive.com"]
@@ -24,7 +25,7 @@ Gem::Specification.new do |s|
     "lib/pingdom.rb",
     "lib/tinder/faraday_response.rb",
     "Rakefile",
-    "Readme.md",
+    "README.md",
     "spec/pingdom-faraday_spec.rb",
     "spec/spec_helper.rb",
   ]
@@ -32,8 +33,8 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.add_dependency "faraday"
   s.add_dependency "faraday_middleware"
-  s.add_dependency "activesupport", "~> 4.2.3"
-  s.add_development_dependency "rspec", "~> 3.3.0"
+  s.add_dependency "activesupport", "~> 4.2"
+  s.add_development_dependency "rspec", "~> 3.3"
   s.add_development_dependency "rubocop"
   s.summary = "Pingdom Ruby Client"
   s.test_files = [
