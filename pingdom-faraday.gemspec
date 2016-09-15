@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "pingdom-faraday"
-  s.version = "0.0.2"
+  s.version = "0.1.0"
 
   s.authors = ["Andy Brennan", "Jason Straughan"]
   s.homepage = "https://github.com/Valdez42/pingdom-faraday"
@@ -33,8 +33,8 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.add_dependency "faraday"
   s.add_dependency "faraday_middleware"
-  s.add_dependency "activesupport", "~> 4.2"
-  s.add_development_dependency "rspec", "~> 3.3"
+  s.add_dependency "activesupport", "~> 5.0"
+  s.add_development_dependency "rspec", "~> 3.5"
   s.add_development_dependency "rubocop"
   s.summary = "Pingdom Ruby Client"
   s.test_files = [
