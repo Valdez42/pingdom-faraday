@@ -9,14 +9,11 @@ module Pingdom
 
       raise ArgumentError, "an application key must be provided (as :key)" unless @options.key?(:key)
 
-      @connection = Faraday::Connection.new(url: "https://api/pingdom.com/api/2.0/", ssl: { verify: false }) do |builder|
-        builder.url_prefix = "https://api.pingdom.com/api/2.0"
-
-        builder.adapter @options[:http_driver]
-
+      @connection = Faraday::Connection.new(url: "https://api.pingdom.com/api/2.0/", ssl: { verify: false }) do |builder|
         # builder.use Gzip # TODO: write GZip response handler, add Accept-Encoding: gzip header
         builder.response :json, content_type: /\bjson$/
         builder.use Tinder::FaradayResponse::WithIndifferentAccess
+        builder.adapter @options[:http_driver]
 
         builder.basic_auth @options[:username], @options[:password]
         builder.headers["App-Key"] = @options[:key]
