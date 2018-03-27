@@ -1,8 +1,8 @@
 module Pingdom
   class Base
     def initialize(client, response, attributes = {})
-      @client     = client
-      @response   = response
+      @client = client
+      @response = response
       @attributes = attributes
     end
 

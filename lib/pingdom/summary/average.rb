@@ -8,8 +8,8 @@ module Pingdom
     #   "status"=>{"totalup"=>5035757, "totalunknown"=>1293069551, "totaldown"=>5078}}
     class Average < Base
       def self.parse(client, response)
-        body  = super["summary"]
-        sum   = body["responsetime"]
+        body = super["summary"]
+        sum = body["responsetime"]
         attrs = sum.slice("from", "to")
         attrs["probes"] = (attrs["probes"] || "").gsub(/\w+/, "").split(",").map(&:to_i)
 

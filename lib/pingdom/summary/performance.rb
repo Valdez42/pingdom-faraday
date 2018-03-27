@@ -20,8 +20,8 @@ module Pingdom
       }.freeze
 
       def self.parse(client, response)
-        body      = super["summary"]
-        interval  = body.keys.detect { |k| INTERVALS.keys.include?(k.chomp("s").to_s) }.chomp("s").to_sym
+        body = super["summary"]
+        interval = body.keys.detect { |k| INTERVALS.keys.include?(k.chomp("s").to_s) }.chomp("s").to_sym
         intervals = body[interval.to_s.pluralize]
 
         intervals.map do |perf|
