@@ -21,7 +21,11 @@ module Pingdom
     end
 
     def method_missing(name, *args, &block)
-      @attributes[name.to_s] or super
+      @attributes[name.to_s] || super
+    end
+
+    def respond_to_missing?(name, include_private = false)
+      @attributes.key?(name.to_s) || super
     end
 
     def respond_to?(name)

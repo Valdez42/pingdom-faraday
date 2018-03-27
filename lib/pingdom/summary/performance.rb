@@ -14,10 +14,10 @@ module Pingdom
     #           {"unmonitored"=>0, "downtime"=>0, "starttime"=>1298102400, "uptime"=>8646, "avgresponse"=>223}]}
     class Performance < Base
       INTERVALS = {
-        "hour"  => 1.hour,
-        "day"   => 1.day,
-        "week"  => 1.week,
-      }
+        "hour" => 1.hour,
+        "day"  => 1.day,
+        "week" => 1.week,
+      }.freeze
 
       def self.parse(client, response)
         body      = super["summary"]

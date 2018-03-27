@@ -22,7 +22,7 @@ module Pingdom
             sum["responsetime"] += avg["avgresponse"]
             new(client, response, avg)
           end
-          sum["responsetime"] = sum["responsetime"] / sum["averages"].size if sum["averages"].size > 0
+          sum["responsetime"] = sum["responsetime"] / sum["averages"].size if !sum["averages"].size.empty?
 
         when Integer
           sum["responsetime"] = sum.delete("avgresponse")
