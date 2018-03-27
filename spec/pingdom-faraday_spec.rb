@@ -6,8 +6,8 @@ describe Pingdom::Client do
   describe "#test!" do
     it "should test a single endpoint" do
       response = client.test!(host: "pingdom.com", type: "http")
-      response.status.should == "up"
-      response.responsetime.should be_a(Numeric)
+      expect(response.status).to eq("up")
+      expect(response.responsetime).to be_a(Numeric)
     end
   end
 
@@ -16,8 +16,8 @@ describe Pingdom::Client do
       checks = client.checks
 
       first = checks.first
-      first.should be_a(Pingdom::Check)
-      first.last_response_time.should be_a(Numeric)
+      expect(first).to be_a(Pingdom::Check)
+      expect(first.last_response_time).to be_a(Numeric)
     end
   end
 
@@ -31,11 +31,11 @@ describe Pingdom::Client do
         end
 
         it "should indicate how many requests can be made" do
-          limit[:remaining].should be_a(Numeric)
+          expect(limit[:remaining]).to be_a(Numeric)
         end
 
         it "should indicate when the current limit will be reset" do
-          limit[:resets_at].acts_like?(:time).should be_true
+          expect(limit[:resets_at].acts_like?(:time)).to be_truthy
         end
       end
     end
