@@ -21,6 +21,16 @@ describe Pingdom::Client do
     end
   end
 
+  describe "#tms_recipes" do
+    it "should get a list of transaction check recipes" do
+      tms_recipes = client.tms_recipes
+
+      first = tms_recipes.first
+      expect(first).to be_a(Pingdom::TMSRecipe)
+      expect(first.name).to be_a(String)
+    end
+  end
+
   describe "#limit" do
     { short: "short term",
       long: "long term" }.each do |(key, label)|

@@ -1,8 +1,10 @@
 $:.push File.expand_path("lib", __dir__)
 
+require "pingdom/version"
+
 Gem::Specification.new do |s|
   s.name        = "pingdom-faraday"
-  s.version     = "0.1.0"
+  s.version     = Pingdom::VERSION
   s.license     = "MIT"
   s.summary     = "Pingdom Ruby Client"
   s.description = "Pingdom Ruby Client"

@@ -41,6 +41,7 @@ Run tests with `bundle exec rake`.
 
 ## Contributors
 
+* Transaction check (TMS) support by [Hund.io](https://github.com/hundio)
 * Updated for Ruby 1.9.x/2.0.0 by Jason Straughan ([jdstraughan](https://github.com/jdstraughan))
 * Emily Price ([duien](https://github.com/duien))
 * Based on [pingom-client](https://github.com/mtodd/pingdom-client) by [Matt Todd](https://github.com/mtodd)

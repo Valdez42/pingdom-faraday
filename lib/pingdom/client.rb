@@ -64,6 +64,14 @@ module Pingdom
       Check.parse(self, get("checks/#{id}")).first
     end
 
+    def tms_recipes(options = {})
+      TMSRecipe.parse(self, get("tms.recipes", options))
+    end
+
+    def tms_recipe(id)
+      TMSRecipe.parse(self, get("tms.recipes/#{id}")).first
+    end
+
     # Check ID
     def results(id, options = {})
       options.reverse_merge!(includeanalysis: true)
@@ -80,6 +88,10 @@ module Pingdom
 
     def summary(id)
       Summary.proxy(self, id)
+    end
+
+    def tms_summary(id)
+      TMSSummary.proxy(self, id)
     end
   end
 end
