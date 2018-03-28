@@ -29,7 +29,9 @@ probe_avg.probe.name        #=> "Atlanta, GA"
 tms = client.tms_recipes.first
                             #=> #<Pingdom::TMSRecipe>
 tms.status                  #=> "SUCCESSFUL"
+
 tms_avg = tms.summary.average from: 1.week.ago
+                            #=> #<Pingdom::TMSSummary::Average>
 tms_avg.response_time       #=> 2760 (ms)
 ```
 
