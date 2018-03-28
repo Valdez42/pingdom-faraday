@@ -3,6 +3,7 @@ require "rubygems"
 require "bundler/setup"
 require "pingdom-faraday"
 
+require "byebug"
 require "logger"
 require "rspec"
 require "yaml"
