@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency "faraday_middleware"
 
   s.add_development_dependency "byebug"
+  s.add_development_dependency "rake"
   s.add_development_dependency "rspec", "~> 3.5"
   s.add_development_dependency "rubocop"
 end
