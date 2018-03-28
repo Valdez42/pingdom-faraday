@@ -31,6 +31,18 @@ describe Pingdom::Client do
     end
   end
 
+  describe "#tms_summary" do
+    let(:recipe) { client.tms_recipes.first }
+
+    it "should return a proxy to retrieve an average summary" do
+      average = client.tms_summary(recipe.id).average
+
+      expect(average).to be_a(Pingdom::TMSSummary::Average)
+      expect(average.response_time).to be_a(Numeric)
+      expect(average.ingredients.first).to be_a(Pingdom::TMSSummary::Average::Ingredient)
+    end
+  end
+
   describe "#limit" do
     { short: "short term",
       long: "long term" }.each do |(key, label)|

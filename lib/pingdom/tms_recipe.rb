@@ -10,8 +10,8 @@ module Pingdom
   # }
   class TMSRecipe < Base
     def self.parse(client, response)
-      recipes = super
-      Array.wrap(recipes["recipes"]).map do |recipe|
+      super["recipes"].map do |id, recipe|
+        recipe["id"] = id
         new(client, response, recipe)
       end
     end

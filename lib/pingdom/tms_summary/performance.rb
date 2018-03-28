@@ -12,6 +12,14 @@ module Pingdom
     #   }
     # ]}
     class Performance < Base
+      class Ingredient < Base
+        def self.parse(client, response)
+          new(client, response, response)
+        end
+
+        attributes avgresponse: :response_time
+      end
+
       INTERVALS = {
         "hour"  => 1.hour,
         "day"   => 1.day,
@@ -28,6 +36,11 @@ module Pingdom
           new(client, response, perf)
         end
       end
+
+      def ingredients
+        @attributes["#"].map { |ingredient| Ingredient.new @client, ingredient }
+      end
+      alias_method :per_ingredient, :ingredients
 
       def starttime
         Time.at(@attributes["starttime"])
