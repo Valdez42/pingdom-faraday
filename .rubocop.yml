@@ -460,6 +460,8 @@ Metrics/AbcSize:
     conditions.
   Enabled: true
   Max: 15
+Metrics/BlockLength:
+  Max: 200
 Metrics/BlockNesting:
   Description: Avoid excessive block nesting
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#three-is-the-number-thou-shalt-count
