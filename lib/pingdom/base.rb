@@ -41,7 +41,9 @@ module Pingdom
     end
 
     def self.check_error!(response)
-      if response.body.key?("error")
+      if response.body.is_a?(String)
+        raise Error, response.body
+      elsif response.body.key?("error")
         raise Error, "%s (%s %s)" % [response.body["error"]["errormessage"],
                                      response.body["error"]["statuscode"],
                                      response.body["error"]["statusdesc"]]
